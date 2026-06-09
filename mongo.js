@@ -65,13 +65,15 @@
 
 const express = require('express');
 const mongoose = require('mongoose'); 
+require('dotenv').config();
+
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));  
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://127.0.0.1:27017/studentDB')
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 
